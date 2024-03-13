@@ -33,8 +33,8 @@ jobs:
         run: echo "${{ secrets.S3_CFG }}" > ~/.s3cfg
       - name: Upload java-cef build
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/home/runner/work/java-cef/java-cef/jcef_build/linux_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/home/runner/work/java-cef/java-cef/jcef_build/linux_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/home/runner/work/java-cef/java-cef/jcef_build/linux_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/home/runner/work/java-cef/java-cef/jcef_build/linux_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
   java-cef-windows:
     runs-on: [windows-2022]
     strategy:
@@ -65,8 +65,8 @@ jobs:
         run: echo "${{ secrets.S3_CFG }}" > "$HOME\AppData\Roaming\s3cmd.ini"
       - name: Upload java-cef build
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@D:\a\java-cef\java-cef\jcef_build\windows_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@D:\a\java-cef\java-cef\jcef_build\windows_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@D:\a\java-cef\java-cef\jcef_build\windows_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@D:\a\java-cef\java-cef\jcef_build\windows_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
   java-cef-macos:
     runs-on: [macos-12]
     strategy:
@@ -91,5 +91,5 @@ jobs:
         run: echo "${{ secrets.S3_CFG }}" > ~/.s3cfg
       - name: Upload java-cef build
         run: |
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/Users/runner/work/java-cef/java-cef/jcef_build/macos_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}
-          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/Users/runner/work/java-cef/java-cef/jcef_build/macos_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/Users/runner/work/java-cef/java-cef/jcef_build/macos_${{ matrix.platform }}.tar.gz" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
+          curl -X POST -H "Content-Type: multipart/form-data" -F "file=@/Users/runner/work/java-cef/java-cef/jcef_build/macos_${{ matrix.platform }}.tar.gz.sha256" ${{ secrets.STORAGE_URL }}/${{ github.sha }}
